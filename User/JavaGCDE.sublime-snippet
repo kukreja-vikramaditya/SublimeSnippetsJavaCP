@@ -1,0 +1,36 @@
+<snippet>
+	<content><![CDATA[
+static $1 MODL = $2;
+static $1 modInverse($1 a) {
+    $1[] g = gcde(a, MODL);
+    $1 x = g[1], y = g[2];
+    if (g[0] != 1)
+        return 0;
+    else {
+        // m is added to handle negative x
+        return (g[1] % MODL + MODL) % MODL;
+    }
+}
+
+static $1[] gcde($1 a, $1 b) {
+    // Base Case
+    if (a == 0) {
+        return new $1[] {b, 0, 1};
+    }
+
+    $1[] gcd = gcde(b % a, a);
+    $1 x1 = gcd[1], y1 = gcd[2]; // To store results of recursive call
+
+    // Update x and y using results of recursive
+    // call
+    gcd[1] = y1 - (b / a) * x1;
+    gcd[2] = x1;
+
+    return gcd;
+}
+]]></content>
+	<!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+	<tabTrigger>gcde</tabTrigger>
+	<!-- Optional: Set a scope to limit where the snippet will trigger -->
+	<!-- <scope>source.python</scope> -->
+</snippet>

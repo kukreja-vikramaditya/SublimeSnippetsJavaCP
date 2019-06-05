@@ -1,0 +1,10 @@
+<snippet>
+	<content><![CDATA[
+static $1 gcd($1 a, $1 b) {
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+}
+]]></content>
+	<tabTrigger>gcd</tabTrigger>
+</snippet>

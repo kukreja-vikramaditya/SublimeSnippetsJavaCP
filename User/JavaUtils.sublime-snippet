@@ -1,0 +1,153 @@
+<snippet>
+	<content><![CDATA[
+$0
+//Utils
+static void swap(int[] arr, int f, int s) {
+    arr[f] ^= arr[s];
+    arr[s] ^= arr[f];
+    arr[f] ^= arr[s];
+}
+
+static void swap(long[] arr, int f, int s) {
+    arr[f] ^= arr[s];
+    arr[s] ^= arr[f];
+    arr[f] ^= arr[s];
+}
+
+static void swap(float[] arr, int f, int s) {
+	float temp = arr[f];
+	arr[f] = arr[s];
+	arr[s] = temp;
+}
+
+static void swap(double[] arr, int f, int s) {
+	double temp = arr[f];
+	arr[f] = arr[s];
+	arr[s] = temp;
+}
+
+static int sign(int x) {
+    if (x == 0) return 0;
+    return x > 0 ? 1 : - 1;
+}
+
+static int sign(long x) {
+    if (x == 0) return 0;
+    return x > 0 ? 1 : - 1;
+}
+
+static int sign(float x) {
+    if (x == 0f) return 0;
+    return x > 0f ? 1 : - 1;
+}
+
+static int sign(double x) {
+    if (x == 0.0) return 0;
+    return x > 0.0 ? 1 : - 1;
+}
+
+static int diff(int a, int b) {
+    return abs(a - b);
+}
+
+static long diff(long a, long b) {
+    return abs(a - b);
+}
+
+static float diff(float a, float b) {
+    return abs(a - b);
+}
+
+static double diff(double a, double b) {
+    return abs(a - b);
+}
+
+static boolean isSqrt(double a) {
+    double sr = Math.sqrt(a);
+    return ((sr - Math.floor(sr)) == 0);
+}
+
+static int abs(int a) {
+    return Math.abs(a);
+}
+
+static long abs(long a) {
+    return Math.abs(a);
+}
+
+static float abs(float a) {
+	return Math.abs(a);
+}
+
+static double abs(double a) {
+	return Math.abs(a);
+}
+
+static int min(int x, int y) {
+    return Math.min(x, y);
+}
+
+static long min(long x, long y) {
+    return Math.min(x, y);
+}
+
+static double min(double x, double y) {
+    return Math.min(x, y);
+}
+
+static int min(int ... arr) {
+    int min = Integer.MAX_VALUE;
+    for (int var : arr)
+        min = Math.min(min, var);
+    return min;
+}
+
+static long min(long ... arr) {
+    long min = Long.MAX_VALUE;
+    for (long var : arr)
+        min = Math.min(min, var);
+    return min;
+}
+
+static double min(double ... arr) {
+    double min = Double.MAX_VALUE;
+    for (double var : arr)
+        min = Math.min(min, var);
+    return min;
+}
+
+static int max(int x, int y) {
+    return Math.max(x, y);
+}
+
+static long max(long x, long y) {
+    return Math.max(x, y);
+}
+
+static double max(double x, double y) {
+    return Math.max(x, y);
+}
+
+static int max(int ... arr) {
+    int max = Integer.MIN_VALUE;
+    for (int var : arr)
+        max = Math.max(max, var);
+    return max;
+}
+
+static long max(long ... arr) {
+    long max = Long.MIN_VALUE;
+    for (long var : arr)
+        max = Math.max(max, var);
+    return max;
+}
+
+static double max(double ... arr) {
+    double max = -Double.MAX_VALUE;
+    for (double var : arr)
+        max = Math.max(max, var);
+    return max;
+}
+]]></content>
+	<tabTrigger>utils</tabTrigger>
+</snippet>

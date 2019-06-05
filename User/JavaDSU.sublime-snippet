@@ -1,0 +1,33 @@
+<snippet>
+	<content><![CDATA[
+static class DisjointSet {
+    int[] arr;
+
+    DisjointSet(int n) {
+        arr = new int[1 + n];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
+    void union(int i, int j) {
+        i = find(i);
+        j = find(j);
+
+        if (i == j)
+            return;
+        arr[j] = arr[i];
+    }
+
+    int find(int i) {
+        if (i == arr[i]) return i;
+        return arr[i] = find(arr[i]);
+    }
+
+    public String toString() {
+        return Arrays.toString(arr);
+    }
+}
+]]></content>
+	<tabTrigger>dsu</tabTrigger>
+</snippet>
