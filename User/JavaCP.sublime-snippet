@@ -25,7 +25,8 @@ public class Codeforces {
         long startPointTime = System.currentTimeMillis();
         scannerIn = System.in;
         printerBW = new BufferedWriter(new OutputStreamWriter(System.out));
-        if (DEBUG) {
+        if (System.getProperty("ONLINE_JUDGE") == null) {
+            DEBUG = true;
             debug("Debugging enabled");
         }
 
@@ -188,12 +189,18 @@ public class Codeforces {
         }
     }
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_DEBUG = "\u001B[33m";
     static <T> void debugl(T str) throws IOException {
         if (!DEBUG) return;
         if (str == null) {
+            printerBW.append(ANSI_DEBUG);
             printerBW.append("null");
+            printerBW.append(ANSI_RESET);
         } else {
+            printerBW.append(ANSI_DEBUG);
             printerBW.append(str.toString());
+            printerBW.append(ANSI_RESET);
         }
         flush();
     }
@@ -203,18 +210,20 @@ public class Codeforces {
         printerBW.append('\n');
         flush();
     }
-
     static <T> void debug(T str) throws IOException {
         if (!DEBUG) return;
         if (str == null) {
+            printerBW.append(ANSI_DEBUG);
             printerBW.append("null\n");
+            printerBW.append(ANSI_RESET);
         } else {
+            printerBW.append(ANSI_DEBUG);
             printerBW.append(str.toString());
+            printerBW.append(ANSI_RESET);
             printerBW.append('\n');
         }
         flush();
     }
-
 
     static void flush() throws IOException {
         printerBW.flush();
