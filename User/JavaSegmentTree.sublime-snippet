@@ -1,0 +1,92 @@
+<snippet>
+    <content><![CDATA[
+static class SegmentTree {
+    int n;
+    int bit;
+    int[] arr;
+    long[] tree;
+    boolean[] lazy;
+    SegmentTree(int[] a, int bit) {
+        this.bit = bit;
+        this.arr = a;
+        n = Integer.highestOneBit(arr.length) << 1;
+        this.tree = new long[n << 1];
+        this.lazy = new boolean[n << 1];
+        build(1, 0, n - 1);
+    }
+    void build(int st, int ss, int se) {
+        if (ss == se) {
+            if (ss < arr.length) tree[st] = (arr[ss] >> bit) & 1;
+            else tree[st] = 0;
+            return;
+        }
+        int mid = ss + se >> 1;
+        build(st << 1, ss, mid);
+        build((st << 1) | 1, mid + 1, se);
+        tree[st] = tree[st << 1] + tree[(st << 1) | 1];
+    }
+    long query(int l, int r) {
+        return query(1, 0, n - 1, l, r);
+    }
+    long query(int st, int ss, int se, int l, int r) {
+        if (lazy[st]) {
+            lazy[st] = false;
+            tree[st] = se - ss + 1 - tree[st];
+            if (ss != se) {
+                lazy[st << 1] = !lazy[st << 1];
+                lazy[(st << 1) | 1] = !lazy[(st << 1) | 1];
+            }
+        }
+        if (l > se || r < ss) return 0;
+        if (l <= ss && se <= r) {
+            return tree[st];
+        }
+        int mid = ss + se >> 1;
+        return query(st << 1, ss, mid, l, r) + query((st << 1) | 1, mid + 1, se, l, r);
+    }
+    void update(int l, int r) {
+        update(1, 0, n - 1, l, r);
+    }
+    void update(int st, int ss, int se, int l, int r) {
+        if (lazy[st]) {
+            lazy[st] = false;
+            tree[st] = se - ss + 1 - tree[st];
+            if (ss != se) {
+                lazy[st << 1] = !lazy[st << 1];
+                lazy[(st << 1) | 1] = !lazy[(st << 1) | 1];
+            }
+        }
+        if (l > se || r < ss) {
+            return;
+        }
+        if (l <= ss && se <= r) {
+            tree[st] = se - ss + 1 - tree[st];
+            if (ss != se) {
+                lazy[st << 1] = !lazy[st << 1];
+                lazy[(st << 1) | 1] = !lazy[(st << 1) | 1];
+            }
+            return;
+        }
+        int mid = ss + se >> 1;
+        update(st << 1, ss, mid, l, r);
+        update((st << 1) | 1, mid + 1, se, l, r);
+        tree[st] = tree[st << 1] + tree[(st << 1) | 1];
+    }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tree.length; ++i) {
+            if (lazy[i]) sb.append('*');
+            sb.append(tree[i]);
+            sb.append("(");
+            sb.append(i);
+            sb.append(") ");
+        }
+        return sb.toString();
+    }
+}
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>segmenttree</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

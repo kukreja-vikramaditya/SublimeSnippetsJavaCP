@@ -15,7 +15,7 @@ public class Codeforces {
     static void yes() throws IOException {println("YES");}
 
     static boolean testCases = false;
-    static boolean DEBUG = false;
+    static boolean DEBUG = true;
 
     static void main() throws Exception {
         $0
@@ -25,8 +25,8 @@ public class Codeforces {
         long startPointTime = System.currentTimeMillis();
         scannerIn = System.in;
         printerBW = new BufferedWriter(new OutputStreamWriter(System.out));
-        if (System.getProperty("ONLINE_JUDGE") == null) {
-            DEBUG = true;
+        if (DEBUG && System.getProperty("ONLINE_JUDGE") == null) {
+            HABLA = true;
             debug("Debugging enabled");
         }
 
@@ -38,12 +38,13 @@ public class Codeforces {
         }
         long endTime = System.currentTimeMillis();
         float totalProgramTime = endTime - startPointTime;
-        if (DEBUG)
+        if (HABLA)
             debug("Execution time is " + totalProgramTime + " (" + (totalProgramTime / 1000) + "s)");
         close();
     }
     
  //IO Stuff
+    private static boolean HABLA = false;
     private static byte[] scannerByteBuffer = new byte[1024]; // Buffer of Bytes
     private static int scannerIndex;
     private static InputStream scannerIn;
@@ -133,15 +134,6 @@ public class Codeforces {
         return array;
     }
 
-    static int[][] n2dia(int r, int c) throws Exception {
-        if (r < 0 || c < 0)
-            throw new Exception("Array size should be non negative");
-        int[][] array = new int[r][c];
-        for (int i = 0; i < r; i++)
-            array[i] = nia(c);
-        return array;
-    }
-
     static long[] nla(int n) throws Exception {
         if (n < 0)
             throw new Exception("Array size should be non negative");
@@ -171,12 +163,12 @@ public class Codeforces {
 
     static <T> void print(T str) throws IOException {
         printerBW.append(str.toString());
-        if (DEBUG) flush();
+        if (HABLA) flush();
     }
 
     static <T> void println() throws IOException {
         printerBW.append('\n');
-        if (DEBUG) flush();
+        if (HABLA) flush();
     }
 
     static <T> void println(T str) throws IOException {
@@ -185,14 +177,14 @@ public class Codeforces {
         } else {
             printerBW.append(str.toString());
             printerBW.append('\n');
-            if (DEBUG) flush();
+            if (HABLA) flush();
         }
     }
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_DEBUG = "\u001B[33m";
     static <T> void debugl(T str) throws IOException {
-        if (!DEBUG) return;
+        if (!HABLA) return;
         if (str == null) {
             printerBW.append(ANSI_DEBUG);
             printerBW.append("null");
@@ -206,12 +198,12 @@ public class Codeforces {
     }
 
     static void debug() throws IOException {
-        if (!DEBUG) return;
+        if (!HABLA) return;
         printerBW.append('\n');
         flush();
     }
     static <T> void debug(T str) throws IOException {
-        if (!DEBUG) return;
+        if (!HABLA) return;
         if (str == null) {
             printerBW.append(ANSI_DEBUG);
             printerBW.append("null\n");

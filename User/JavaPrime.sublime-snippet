@@ -1,0 +1,17 @@
+<snippet>
+    <content><![CDATA[
+    static boolean isPrime($1 ele) {
+        if(ele == 1) return false;
+        if(ele == 2 || ele == 3 || ele == 5 || ele == 7) return true;
+        if(ele % 2 == 0) return false;
+        for(long i = 3, sq = ($1) Math.sqrt(ele); i <= sq; i += 3) {
+            if(ele % i == 0) return false;
+        }
+        return true;
+    }
+]]></content>
+    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
+    <tabTrigger>isprime</tabTrigger>
+    <!-- Optional: Set a scope to limit where the snippet will trigger -->
+    <!-- <scope>source.python</scope> -->
+</snippet>

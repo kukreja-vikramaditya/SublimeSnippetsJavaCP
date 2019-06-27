@@ -1,0 +1,10 @@
+<snippet>
+    <content><![CDATA[
+$1 ^= $2;
+$2 ^= $1;
+$1 ^= $2;
+$0
+]]></content>
+    <tabTrigger>swap</tabTrigger>
+    <scope>source.java</scope>
+</snippet>
